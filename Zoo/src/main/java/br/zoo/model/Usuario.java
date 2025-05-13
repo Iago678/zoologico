@@ -1,16 +1,32 @@
 package br.zoo.model;
 
 import java.util.Date;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Usuarios")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "idUser")
     private Integer id;
+
+    @Column(length = 50, nullable = false)
     private String nome;
+
+    @Column(length = 20, nullable = false)
     private String login;
 
+    @Column(length = 70, nullable = false)
     private String senha;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataUltimoAcesso;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 15, nullable = false)
     private ETipoUsuario tipo; //USER, ADMIN, CLIENTE
 
     public Usuario() {

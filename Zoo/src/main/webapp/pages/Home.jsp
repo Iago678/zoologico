@@ -19,14 +19,18 @@
 </p>
 
 <div class="grid md:grid-rows-3 gap-4 text-center">
+    <a href="web?ac=cadastro">
     <div class="bg-blue-50 p-4 rounded-lg">
         <h3 class="font-medium text-blue-800 mb-2 ">Horários</h3>
         <p class="text-blue-600">Veja nossos horários de visita</p>
     </div>
+    </a>
+    <a href="web?ac=login">
     <div class="bg-green-50 p-4 rounded-lg">
         <h3 class="font-medium text-green-800 mb-2">Faça Login</h3>
         <p class="text-green-600">Descontos para membros</p>
     </div>
+    </a>
     <div class="bg-purple-50 p-4 rounded-lg">
         <h3 class="font-medium text-purple-800 mb-2">Recurso 3</h3>
         <p class="text-purple-600">Descrição do terceiro recurso.</p>

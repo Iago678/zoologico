@@ -13,7 +13,6 @@
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
         <header class="bg-blue-600 text-white p-4 shadow-md">
-
                     <jsp:include page="componentes/header.jsp" />
         </header>
         <!-- Main -->
