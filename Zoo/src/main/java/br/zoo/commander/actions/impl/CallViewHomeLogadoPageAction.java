@@ -22,8 +22,6 @@ public class CallViewHomeLogadoPageAction implements ICommanderAction {
 
     @Override
     public boolean isAuthorized(HttpServletRequest req) {
-        Usuario user = (Usuario) req.getSession().getAttribute("user");
-
         return true;
     }
 

@@ -27,7 +27,6 @@ public class CallValidaLoginAction implements br.zoo.commander.actions.ICommande
 
         req.getSession().setAttribute("user",usu);
         req.getSession().setAttribute("estaLogado","1");
-
         RequestDispatcher rd = req.getRequestDispatcher("template.jsp?page=HomeLogado");
         rd.forward(req,resp);
     }
