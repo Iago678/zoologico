@@ -38,18 +38,28 @@
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cadastro</a>
                         </li>
                     </c:if>
-                    <!-- logado como cliente -->
-                    <c:if
-                        test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'CLIENTE'}">
-                        <li>
-                            <a href="web?ac=logout"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
-                        </li>
+
+                    <!-- logado como visitante ou Funcionario -->
+                    <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && (sessionScope.user.tipo == 'VISITANTE' || sessionScope.user.tipo == 'FUNCIONARIO')}">
                         <li>
                             <a href="#"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
                         </li>
                     </c:if>
+                    <!-- logado como admin -->
+                    <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'ADMIN'}">
+                        <li>
+                            <a href="web?ac=cadastroFunc"
+                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cadastrar Funcionario</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.estaLogado != null || sessionScope.estaLogado.equals('1')}">
+                        <li>
+                            <a href="web?ac=logout"
+                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+                        </li>
+                    </c:if>
+
                 </ul>
             </div>
         </div>

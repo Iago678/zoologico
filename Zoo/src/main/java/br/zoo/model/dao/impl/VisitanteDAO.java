@@ -1,6 +1,6 @@
 package br.zoo.model.dao.impl;
 
-import br.zoo.model.Cliente;
+import br.zoo.model.Visitante;
 import br.zoo.model.dao.GenericsDAO;
 import br.zoo.util.CriptoUtil;
 
@@ -10,11 +10,10 @@ import javax.persistence.Query;
 import java.util.List;
 
 
-public class ClienteDAO extends GenericsDAO<Cliente, Integer> {
-
+public class VisitanteDAO extends GenericsDAO<Visitante, Integer> {
 
     @Override
-    public Cliente inserir(Cliente obj) throws Exception {
+    public Visitante inserir(Visitante obj) throws Exception {
         try {
             connection.getTransaction().begin();
             obj.setSenha(CriptoUtil.getHash( obj.getSenha() ));
@@ -31,7 +30,7 @@ public class ClienteDAO extends GenericsDAO<Cliente, Integer> {
     }
 
     @Override
-    public Cliente alterar(Cliente obj) throws Exception {
+    public Visitante alterar(Visitante obj) throws Exception {
         try {
             connection.getTransaction().begin();
             connection.persist(obj);
@@ -44,7 +43,7 @@ public class ClienteDAO extends GenericsDAO<Cliente, Integer> {
     }
 
     @Override
-    public Cliente apagar(Cliente obj) throws Exception {
+    public Visitante apagar(Visitante obj) throws Exception {
         try {
             connection.getTransaction().begin();
             connection.remove(obj);
@@ -57,13 +56,13 @@ public class ClienteDAO extends GenericsDAO<Cliente, Integer> {
     }
 
     @Override
-    public Cliente apagarByKey(Integer key) throws Exception {
+    public Visitante apagarByKey(Integer key) throws Exception {
         try {
             connection.getTransaction().begin();
-            Cliente c = buscar(key);
-            connection.remove(c);
+            Visitante v = buscar(key);
+            connection.remove(v);
             connection.getTransaction().commit();
-            return c;
+            return v;
         } catch (Exception e) {
             connection.getTransaction().rollback();
             throw new Exception(e);
@@ -71,31 +70,31 @@ public class ClienteDAO extends GenericsDAO<Cliente, Integer> {
     }
 
     @Override
-    public Cliente buscar(Integer key) {
-        Cliente c = connection.find(Cliente.class, key);
-        return c;
+    public Visitante buscar(Integer key) {
+        Visitante v = connection.find(Visitante.class, key);
+        return v;
     }
 
     @Override
-    public List<Cliente> buscarTodos() {
-        List<Cliente> listaCli = connection.createQuery("select c from Cliente c ").getResultList();
-        return listaCli;
+    public List<Visitante> buscarTodos() {
+        List<Visitante> listaVis = connection.createQuery("select v from Visitante v ").getResultList();
+        return listaVis;
     }
 
-    public List<Cliente> buscarByName(String nome){
-        String jpql = "select c from Cliente c where c.nome like :nm ";
+    public List<Visitante> buscarByName(String nome){
+        String jpql = "select v from Visitante v where v.nome like :nm ";
         Query q = connection.createQuery(jpql);
         q.setParameter("nm", "%"+nome+"%");
         return q.getResultList();
     }
 
-    public Cliente buscarByLoginAndSenha(String login, String senha){
-        String jpql = "select c from Cliente c where c.login = :log and c.senha = :sen";
+    public Visitante buscarByLoginAndSenha(String login, String senha){
+        String jpql = "select v from Visitante v where v.login = :log and v.senha = :sen";
         Query q = connection.createQuery(jpql);
         q.setParameter("log",login);
         q.setParameter("sen",CriptoUtil.getHash(senha));
         try {
-            return (Cliente) q.getSingleResult();
+            return (Visitante) q.getSingleResult();
         }catch (NoResultException e){
             return null;
         }catch (NonUniqueResultException e){

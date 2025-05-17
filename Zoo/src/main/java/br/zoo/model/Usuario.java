@@ -27,7 +27,7 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
-    private ETipoUsuario tipo; //USER, ADMIN, CLIENTE
+    private ETipoUsuario tipo; //USER, ADMIN, VISITANTE, FUNCIONARIO
 
     public Usuario() {
     }

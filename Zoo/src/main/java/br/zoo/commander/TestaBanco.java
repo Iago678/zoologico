@@ -1,8 +1,6 @@
 package br.zoo.commander;
 
-import br.zoo.model.Cliente;
-import br.zoo.model.ETipoUsuario;
-import br.zoo.model.Usuario;
+import br.zoo.model.*;
 import br.zoo.util.CriptoUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 @WebServlet(value = "teste")
@@ -25,11 +22,14 @@ public class TestaBanco extends HttpServlet {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("EST_PU");
         EntityManager em = emf.createEntityManager();
 
-        Usuario u = new Usuario(0, "Iago da Silva", "iago",
+        Admin u = new Admin(0, "Zezin da Silva", "ze",
                 CriptoUtil.getHash("123"), new Date(), ETipoUsuario.ADMIN);
 
-        Cliente cli = new Cliente(0, "Pedrin Rocha", "ped",
-                CriptoUtil.getHash("123"), new Date(), ETipoUsuario.CLIENTE, "pedrin@exemplo.com");
+        Visitante cli = new Visitante(1, "Luiz Rocha", "lulu",
+                CriptoUtil.getHash("123"), new Date(), ETipoUsuario.VISITANTE, "l@gmail.com");
+
+        Funcionario func = new Funcionario(2, "Iago Silva", "iago",
+                CriptoUtil.getHash("123"), new Date(), ETipoUsuario.FUNCIONARIO, 12, TiposCargo.GUIA);
 
         em.getTransaction().begin();
         em.persist(u);

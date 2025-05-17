@@ -26,15 +26,15 @@
         
         <!-- Main -->
         <main class="flex-grow container mx-auto p-4">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
+            <div class="bg-lime-50 dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
                 <jsp:include page="/pages/${param.page}.jsp" />
             </div>
         </main>
 
         <!-- Footer -->
-        <footer class="bg-gray-800 dark:bg-gray-950 text-white p-4 transition-colors duration-300">
+        <nav class="bg-white border-gray-200 dark:bg-gray-900">
             <div class="container mx-auto text-center">
-                <p>&copy; 2025 Zoologico.</p>
+                <p class="self-center text-l font-semibold whitespace-nowrap dark:text-white">&copy; 2025 Zoologico.</p>
             </div>
         </footer>
     </div>
@@ -81,6 +81,7 @@
             }
         });
     </script>
+
 </body>
 </html>
 

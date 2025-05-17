@@ -22,10 +22,13 @@ public class CommanderController extends HttpServlet {
         comandos.put("login",new CallViewLoginPageAction());
         comandos.put("logout",new CallLogoutAction());
         comandos.put("cadastro",new CallViewCadastrorPageAction());
-        comandos.put("saveCliente", new CallSaveClienteAction());
+        comandos.put("cadastroFunc",new CallViewCadastroFuncPageAction());
+        comandos.put("saveCliente", new CallSaveVisitanteAction());
+        comandos.put("saveFunc", new CallSaveFuncionarioAction());
         comandos.put("error",new CallViewErrorPageAction());
         comandos.put("valLog",new CallValidaLoginAction());
         comandos.put("HomeLog",new CallViewHomeLogadoPageAction());
+        comandos.put("HomeFunc",new CallViewHomeFuncionarioPageAction());
     }
 
     protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

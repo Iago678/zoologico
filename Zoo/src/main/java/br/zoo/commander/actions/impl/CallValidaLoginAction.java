@@ -1,7 +1,6 @@
 package br.zoo.commander.actions.impl;
 
 import br.zoo.model.Usuario;
-import br.zoo.model.dao.impl.ClienteDAO;
 import br.zoo.model.dao.impl.UsuarioDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

@@ -10,11 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class CallViewHomeLogadoPageAction implements ICommanderAction {
+public class CallViewHomeFuncionarioPageAction implements ICommanderAction {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("template.jsp?page=HomeLogado");
+        RequestDispatcher rd = req.getRequestDispatcher("template.jsp?page=HomeFuncionario");
 
         rd.forward(req,resp);
     }
@@ -23,11 +23,7 @@ public class CallViewHomeLogadoPageAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        if(u == null){
-            return false;
-        }
-        return true;
+        return u != null && !(u instanceof Visitante);
     }
 
 }
-

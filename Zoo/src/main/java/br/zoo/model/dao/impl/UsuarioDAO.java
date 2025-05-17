@@ -1,6 +1,5 @@
 package br.zoo.model.dao.impl;
 
-import br.zoo.model.Cliente;
 import br.zoo.model.Usuario;
 import br.zoo.model.dao.GenericsDAO;
 import br.zoo.util.CriptoUtil;
