@@ -29,7 +29,10 @@ public class CommanderController extends HttpServlet {
         comandos.put("valLog",new CallValidaLoginAction());
         comandos.put("HomeLog",new CallViewHomeLogadoPageAction());
         comandos.put("HomeFunc",new CallViewHomeFuncionarioPageAction());
+        comandos.put("AgendaVis",new CallViewAgendaVisitaPageAction());
+        comandos.put("saveVisita",new CallSaveAgendamentoAction());
     }
+
 
     protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String ac = req.getParameter("ac");
