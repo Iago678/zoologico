@@ -25,6 +25,7 @@ public class CommanderController extends HttpServlet {
         comandos.put("cadastroFunc",new CallViewFuncionarioPageAction());
         comandos.put("saveCliente", new CallSaveVisitanteAction());
         comandos.put("saveFunc", new CallSaveFuncionarioAction());
+        comandos.put("saveAnimal", new CallSaveAnimalAction());
         comandos.put("error",new CallViewErrorPageAction());
         comandos.put("valLog",new CallValidaLoginAction());
         comandos.put("HomeLog",new CallViewHomeLogadoPageAction());
@@ -33,6 +34,8 @@ public class CommanderController extends HttpServlet {
         comandos.put("saveVisita",new CallSaveAgendamentoAction());
         comandos.put("animais",new CallViewAnimaisPageAction());
         comandos.put("delFunc",new CallDeleteFuncionarioAction());
+        comandos.put("delAnimal",new CallDeleteAnimalAction());
+        comandos.put("adminAnimais",new CallViewAdminAnimaisPageAction());
     }
 
 

@@ -14,22 +14,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
+import static br.zoo.model.Agendamento_.user;
+
 public class CallDeleteAnimalAction implements ICommanderAction {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String nome = (String) req.getAttribute("cpNome");
-        Animal a = (Animal) new AnimalDAO().buscarByName(nome);
-        Usuario user = (Usuario) req.getSession().getAttribute("user");
-
+        Integer id = Integer.valueOf(req.getParameter("cpId"));
 
         try {
-            new AnimalDAO().apagar(a);
-            req.setAttribute("msg", user.getNome()+" Animal apagado com sucesso!!!");
+            new AnimalDAO().apagarByKey(id);
+            req.setAttribute("msg",  "Animal apagado com sucesso!!!");
         } catch (Exception e) {
             req.setAttribute("msg", "Erro ao apagar "+e.getMessage());
         }
 
-        new CallViewLoginPageAction().execute(req, resp);
+        new CallViewAdminAnimaisPageAction().execute(req, resp);
     }
 
     @Override

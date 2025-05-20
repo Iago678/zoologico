@@ -1,6 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+<c:set var="classeHome" value="text-gray-900 hover:bg-gray-100 md:hover:text-blue-700" />
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/">
@@ -26,7 +28,7 @@
                     <c:if test="${sessionScope.estaLogado == null || sessionScope.estaLogado.equals('0')}">
                         <li>
                             <a href="/"
-                                class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                 aria-current="page">Home</a>
                         </li>
                         <li>
@@ -45,24 +47,16 @@
                         </li>
                     </c:if>
 
-                    <!-- logado como visitante ou Funcionario -->
-                    <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && (sessionScope.user.tipo == 'VISITANTE' || sessionScope.user.tipo == 'FUNCIONARIO')}">
-                    </c:if>
+
                     <!-- logado como admin -->
                     <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'ADMIN'}">
                         <li>
-                            <a href="web?ac=animais"
+                            <a href="web?ac=adminAnimais"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Animais</a>
                         </li>
                         <li>
                             <a href="web?ac=cadastroFunc"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Funcionarios</a>
-                        </li>
-                    </c:if>
-                    <c:if test="${sessionScope.estaLogado != null || sessionScope.estaLogado.equals('1')}">
-                        <li>
-                            <a href="web?ac=logout"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
                         </li>
                     </c:if>
                     <!-- logado como funcionario -->
@@ -73,7 +67,15 @@
                         </li>
                     </c:if>
 
+                    <c:if test="${sessionScope.estaLogado != null || sessionScope.estaLogado.equals('1')}">
+                        <li>
+                            <a href="web?ac=logout"
+                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
     </nav>
+
+

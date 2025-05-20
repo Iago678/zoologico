@@ -20,16 +20,18 @@
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+<div class="bg-[url('./images/zoo.jpg')] bg-cover">
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
         <jsp:include page="componentes/header.jsp" />
-        
+
         <!-- Main -->
         <main class="flex-grow container mx-auto p-4">
             <div class="bg-lime-50 dark:bg-gray-800 rounded-lg shadow-md p-6 transition-colors duration-300">
                 <jsp:include page="/pages/${param.page}.jsp" />
             </div>
         </main>
+</div>
 
         <!-- Footer -->
         <nav class="bg-white border-gray-200 dark:bg-gray-900">
