@@ -15,6 +15,7 @@ import java.util.Date;
 public class CallSaveFuncionarioAction implements br.zoo.commander.actions.ICommanderAction {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Usuario admin = (Usuario) req.getSession().getAttribute("user");
         Usuario usu = new Funcionario();
         usu.setLogin(req.getParameter("cpLogin"));
         usu.setSenha(req.getParameter("cpSenha"));
@@ -27,12 +28,12 @@ public class CallSaveFuncionarioAction implements br.zoo.commander.actions.IComm
 
         try {
             new FuncionarioDAO().inserir((Funcionario) usu);
-            req.setAttribute("msg", usu.getNome()+" Seu cadastro foi feito com sucesso!!!");
+            req.setAttribute("msg", "Funcionario "+usu.getNome()+"cadastrado com sucesso!!!\n"+admin.getNome());
         } catch (Exception e) {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewCadastroFuncPageAction().execute(req, resp);
+        new CallViewFuncionarioPageAction().execute(req, resp);
     }
 
     @Override

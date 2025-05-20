@@ -1,0 +1,127 @@
+package br.zoo.model;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table
+public class Animal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "idAnimal")
+    private Integer id;
+
+    @Column(length = 50, nullable = false)
+    private String nome;
+
+    @Column(length = 50, nullable = false)
+    private String nomeCientifico;
+
+    @Column(length = 50, nullable = false)
+    private String especie;
+
+    @Column(length = 40, nullable = false)
+    private LocalDate dataChegada;
+
+    @Column(length = 20, nullable = false)
+    private SaudeAnimal estadoSaude; // SAUDAVEL, DOENTE, TRATAMENTO
+
+    @Column(length = 20, nullable = false)
+    private SexoAnimal sexoAnimal; //MACHO, FEMEA
+
+    @Column(length = 20, nullable = false)
+    private int idade;
+
+    @Column(length = 20, nullable = false)
+    private boolean emExpo;
+
+    public Animal(Integer id, String nome, String nomeCientifico, String especie, LocalDate dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo)
+    {
+        this.id = id;
+        this.nome = nome;
+        this.nomeCientifico = nomeCientifico;
+        this.especie = especie;
+        this.dataChegada = dataChegada;
+        this.estadoSaude = estadoSaude;
+        this.sexoAnimal = sexoAnimal;
+        this.idade = idade;
+        this.emExpo = emExpo;
+    }
+
+    public Animal() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNomeCientifico() {
+        return nomeCientifico;
+    }
+
+    public void setNomeCientifico(String nomeCientifico) {
+        this.nomeCientifico = nomeCientifico;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public LocalDate getDataChegada() {
+        return dataChegada;
+    }
+
+    public void setDataChegada(LocalDate dataChegada) {
+        this.dataChegada = dataChegada;
+    }
+
+    public SaudeAnimal getEstadoSaude() {
+        return estadoSaude;
+    }
+
+    public void setEstadoSaude(SaudeAnimal estadoSaude) {
+        this.estadoSaude = estadoSaude;
+    }
+
+    public SexoAnimal getSexo() {
+        return sexoAnimal;
+    }
+
+    public void setSexo(SexoAnimal sexoAnimal) {
+        this.sexoAnimal = sexoAnimal;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public boolean isEmExpo() {
+        return emExpo;
+    }
+
+    public void setEmExpo(boolean emExpo) {
+        this.emExpo = emExpo;
+    }
+}

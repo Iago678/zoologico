@@ -1,6 +1,6 @@
 package br.zoo.model.dao.impl;
 
-import br.zoo.model.Admin;
+import br.zoo.model.Animal;
 import br.zoo.model.dao.GenericsDAO;
 import br.zoo.util.CriptoUtil;
 
@@ -9,16 +9,14 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import java.util.List;
 
-import static br.zoo.model.Usuario_.nome;
 
+public class AnimalDAO extends GenericsDAO<Animal, Integer> {
 
-public class AdminDAO extends GenericsDAO<Admin, Integer> {
     @Override
-    public Admin inserir(Admin obj) throws Exception {
+    public Animal inserir(Animal obj) throws Exception {
         try {
             connection.getTransaction().begin();
-            obj.setSenha(CriptoUtil.getHash( obj.getSenha() ));
-            connection.merge(obj);
+            connection.persist(obj);
             connection.getTransaction().commit();
             return obj;
         } catch (Exception e) {
@@ -31,7 +29,7 @@ public class AdminDAO extends GenericsDAO<Admin, Integer> {
     }
 
     @Override
-    public Admin alterar(Admin obj) throws Exception {
+    public Animal alterar(Animal obj) throws Exception {
         try {
             connection.getTransaction().begin();
             connection.persist(obj);
@@ -44,7 +42,7 @@ public class AdminDAO extends GenericsDAO<Admin, Integer> {
     }
 
     @Override
-    public Admin apagar(Admin obj) throws Exception {
+    public Animal apagar(Animal obj) throws Exception {
         try {
             connection.getTransaction().begin();
             connection.remove(obj);
@@ -57,10 +55,10 @@ public class AdminDAO extends GenericsDAO<Admin, Integer> {
     }
 
     @Override
-    public Admin apagarByKey(Integer key) throws Exception {
+    public Animal apagarByKey(Integer key) throws Exception {
         try {
             connection.getTransaction().begin();
-            Admin a = buscar(key);
+            Animal a = buscar(key);
             connection.remove(a);
             connection.getTransaction().commit();
             return a;
@@ -71,16 +69,22 @@ public class AdminDAO extends GenericsDAO<Admin, Integer> {
     }
 
     @Override
-    public Admin buscar(Integer key) {
-        Admin a = connection.find(Admin.class, key);
+    public Animal buscar(Integer key) {
+        Animal a = connection.find(Animal.class, key);
         return a;
     }
 
     @Override
-    public List<Admin> buscarTodos() {
-        String jpql = "select a from Admin a where a.nome like :nm ";
+    public List<Animal> buscarTodos() {
+        List<Animal> listaAni = connection.createQuery("select a from Animal a ").getResultList();
+        return listaAni;
+    }
+
+    public List<Animal> buscarByName(String nome){
+        String jpql = "select a from Animal a where a.nome like :nm ";
         Query q = connection.createQuery(jpql);
         q.setParameter("nm", "%"+nome+"%");
         return q.getResultList();
     }
+
 }

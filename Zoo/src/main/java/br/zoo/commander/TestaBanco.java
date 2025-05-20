@@ -34,6 +34,7 @@ public class TestaBanco extends HttpServlet {
         em.getTransaction().begin();
         em.persist(u);
         em.persist(cli);
+        em.persist(func);
 
 
         em.getTransaction().commit();

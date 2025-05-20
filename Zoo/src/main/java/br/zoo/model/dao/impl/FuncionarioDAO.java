@@ -1,6 +1,7 @@
 package br.zoo.model.dao.impl;
 
 import br.zoo.model.Funcionario;
+import br.zoo.model.Visitante;
 import br.zoo.model.dao.GenericsDAO;
 import br.zoo.util.CriptoUtil;
 
@@ -77,6 +78,12 @@ public class FuncionarioDAO extends GenericsDAO<Funcionario, Integer> {
 
     @Override
     public List<Funcionario> buscarTodos() {
+        String jpql = "select f from Funcionario f";
+        Query q = connection.createQuery(jpql);
+        return q.getResultList();
+    }
+
+    public List<Funcionario> buscarByName(String nome){
         String jpql = "select f from Funcionario f where f.nome like :nm ";
         Query q = connection.createQuery(jpql);
         q.setParameter("nm", "%"+nome+"%");
