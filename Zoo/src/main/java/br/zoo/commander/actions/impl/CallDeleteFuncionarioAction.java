@@ -31,6 +31,8 @@ public class CallDeleteFuncionarioAction implements br.zoo.commander.actions.ICo
 
     @Override
     public boolean isAuthorized(HttpServletRequest req) {
-        return true;
+        Usuario u = (Usuario) req.getSession().getAttribute("user");
+
+        return u.getTipo() == ETipoUsuario.ADMIN;
     }
 }

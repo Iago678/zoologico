@@ -39,6 +39,8 @@ public class CallSaveAgendamentoAction implements ICommanderAction {
 
     @Override
     public boolean isAuthorized(HttpServletRequest req) {
-        return true;
+        Usuario u = (Usuario) req.getSession().getAttribute("user");
+
+        return u != null;
     }
 }

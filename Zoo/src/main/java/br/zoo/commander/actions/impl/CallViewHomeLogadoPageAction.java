@@ -1,6 +1,7 @@
 package br.zoo.commander.actions.impl;
 
 import br.zoo.commander.actions.ICommanderAction;
+import br.zoo.model.ETipoUsuario;
 import br.zoo.model.Usuario;
 import br.zoo.model.Visitante;
 import jakarta.servlet.RequestDispatcher;
@@ -23,10 +24,7 @@ public class CallViewHomeLogadoPageAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        if(u == null){
-            return false;
-        }
-        return true;
+        return u != null;
     }
 
 }

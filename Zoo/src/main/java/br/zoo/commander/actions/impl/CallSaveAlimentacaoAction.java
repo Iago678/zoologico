@@ -1,28 +1,31 @@
 package br.zoo.commander.actions.impl;
 
 import br.zoo.commander.actions.ICommanderAction;
-import br.zoo.model.ETipoUsuario;
-import br.zoo.model.Usuario;
-import br.zoo.model.Veterinario;
+import br.zoo.model.*;
+import br.zoo.model.dao.impl.AlimentacaoDAO;
+import br.zoo.model.dao.impl.AnimalDAO;
+import br.zoo.model.dao.impl.FuncionarioDAO;
 import br.zoo.model.dao.impl.VeterinarioDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Date;
 
-public class CallSaveVetAction implements ICommanderAction {
+public class CallSaveAlimentacaoAction implements ICommanderAction {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Veterinario vet = new Veterinario();
-        vet.setCrmv(req.getParameter("cpCrmv"));
-        vet.setNome(req.getParameter("cpNomeVet"));
-        vet.setTelefone(req.getParameter("cpTel"));
-
+        Alimentacao a = new Alimentacao();
+        a.setAnimal(new AnimalDAO().buscar(Integer.valueOf(req.getParameter("cpId"))));
+        Funcionario f = (Funcionario) req.getSession().getAttribute("user");
+        a.setFuncionario(f);
+        a.setData(new Date());
+        a.setFoiAlimentado(true);
 
         try {
-            new VeterinarioDAO().inserir(vet);
-            req.setAttribute("msg", vet.getNome()+" Seu cadastro foi feito com sucesso!!!");
+            new AlimentacaoDAO().inserir(a);
+            req.setAttribute("msg", " Alimentação feita com sucesso!!!");
         } catch (Exception e) {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
@@ -34,6 +37,6 @@ public class CallSaveVetAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        return u.getTipo() == ETipoUsuario.ADMIN;
+        return u.getTipo() != ETipoUsuario.VISITANTE;
     }
 }

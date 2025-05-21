@@ -38,6 +38,8 @@ public class CallSaveFuncionarioAction implements br.zoo.commander.actions.IComm
 
     @Override
     public boolean isAuthorized(HttpServletRequest req) {
-        return true;
+        Usuario u = (Usuario) req.getSession().getAttribute("user");
+
+        return u.getTipo() == ETipoUsuario.ADMIN;
     }
 }

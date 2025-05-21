@@ -10,14 +10,14 @@
         </button>
     </div>
 
-    <!-- Seção de Cadastro de Animal (visível por padrão) -->
+    <!-- Seção de Cadastro de Animal (visível) -->
     <div id="cadastro">
         <h2 class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center dark:text-white">
             Cadastrar Animal
         </h2>
 
         <form class="max-w-md mx-auto space-y-6 gap-4" method="POST" action="web?ac=saveAnimal">
-            <!-- Linha 1: Nome e Saúde -->
+            <!-- Nome e Saúde -->
             <div class="flex gap-4">
                 <div class="flex-1">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
@@ -43,7 +43,7 @@
                     placeholder="Nome Cientifico" required />
             </div>
 
-            <!-- Linha 2: Espécie e Idade -->
+            <!-- Espécie e Idade -->
             <div class="flex gap-8">
                 <div class="flex-1">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Espécie</label>
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <!-- Linha 3: Checkbox e Sexo -->
+            <!-- Checkbox e Sexo -->
             <div class="flex gap-8 items-start">
                 <div class="flex-1 flex items-center mt-6">
                     <input id="default-checkbox" type="checkbox" name="cpExpo" value="true"

@@ -2,7 +2,9 @@ package br.zoo.commander.actions.impl;
 
 import br.zoo.commander.actions.ICommanderAction;
 import br.zoo.model.Animal;
+import br.zoo.model.ETipoUsuario;
 import br.zoo.model.TiposCargo;
+import br.zoo.model.Usuario;
 import br.zoo.model.dao.impl.AnimalDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -23,6 +25,8 @@ public class CallViewAnimaisPageAction implements ICommanderAction {
 
     @Override
     public boolean isAuthorized(HttpServletRequest req) {
-        return true;
+        Usuario u = (Usuario) req.getSession().getAttribute("user");
+
+        return u.getTipo() != ETipoUsuario.VISITANTE;
     }
 }
