@@ -1,7 +1,7 @@
 package br.zoo.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table
@@ -9,7 +9,6 @@ public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "idAnimal")
     private Integer id;
 
@@ -23,7 +22,7 @@ public class Animal {
     private String especie;
 
     @Column(length = 40, nullable = false)
-    private LocalDate dataChegada;
+    private Date dataChegada;
 
     @Column(length = 20, nullable = false)
     private SaudeAnimal estadoSaude; // SAUDAVEL, DOENTE, TRATAMENTO
@@ -37,7 +36,7 @@ public class Animal {
     @Column(length = 20, nullable = false)
     private boolean emExpo;
 
-    public Animal(Integer id, String nome, String nomeCientifico, String especie, LocalDate dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo)
+    public Animal(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo)
     {
         this.id = id;
         this.nome = nome;
@@ -85,11 +84,11 @@ public class Animal {
         this.especie = especie;
     }
 
-    public LocalDate getDataChegada() {
+    public Date getDataChegada() {
         return dataChegada;
     }
 
-    public void setDataChegada(LocalDate dataChegada) {
+    public void setDataChegada(Date dataChegada) {
         this.dataChegada = dataChegada;
     }
 

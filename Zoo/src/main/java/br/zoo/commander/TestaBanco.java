@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 @WebServlet(value = "teste")
@@ -31,10 +32,16 @@ public class TestaBanco extends HttpServlet {
         Funcionario func = new Funcionario(2, "Iago Silva", "iago",
                 CriptoUtil.getHash("123"), new Date(), ETipoUsuario.FUNCIONARIO, 12, TiposCargo.GUIA);
 
+        Veterinario vet = new Veterinario(null, "SP12345", "329999-9999", "antonio");
+
+        Animal anm = new Animal(4, "tigre", "Tigre Dente de Sabre", "Trigrus", new Date(), SaudeAnimal.SAUDAVEL, SexoAnimal.FEMEA, 12, true);
+
         em.getTransaction().begin();
         em.persist(u);
         em.persist(cli);
         em.persist(func);
+        em.persist(vet);
+        em.persist(anm);
 
 
         em.getTransaction().commit();

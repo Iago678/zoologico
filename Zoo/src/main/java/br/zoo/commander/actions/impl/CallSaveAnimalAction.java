@@ -18,7 +18,7 @@ public class CallSaveAnimalAction implements ICommanderAction {
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Animal a = new Animal();
         a.setEspecie(req.getParameter("cpEspecie"));
-        a.setDataChegada(LocalDate.now());
+        a.setDataChegada(new Date());
         a.setEstadoSaude(SaudeAnimal.valueOf(req.getParameter("cpSaude")));
         a.setNome((req.getParameter("cpNomeAnm")));
         a.setNomeCientifico(req.getParameter("cpNomeCient"));
