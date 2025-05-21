@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-import static br.zoo.model.Agendamento_.user;
+
 
 public class CallDeleteAnimalAction implements ICommanderAction {
     @Override

@@ -11,12 +11,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class CallViewAnimaisPageAction implements ICommanderAction {
+public class CallViewFuncAnimaisPageAction implements ICommanderAction {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("template.jsp?page=ListaAnimais");
+        RequestDispatcher rd = req.getRequestDispatcher("template.jsp?page=FuncAnimais");
 
-        req.setAttribute("animais", new AnimalDAO().buscarTodosView());
+        req.setAttribute("animais", new AnimalDAO().buscarTodos());
 
         rd.forward(req,resp);
     }
@@ -25,6 +25,6 @@ public class CallViewAnimaisPageAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        return u.getTipo() == ETipoUsuario.ADMIN;
+        return u.getTipo() != ETipoUsuario.VISITANTE;
     }
 }

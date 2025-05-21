@@ -4,8 +4,6 @@ import br.zoo.commander.actions.ICommanderAction;
 import br.zoo.model.*;
 import br.zoo.model.dao.impl.AlimentacaoDAO;
 import br.zoo.model.dao.impl.AnimalDAO;
-import br.zoo.model.dao.impl.FuncionarioDAO;
-import br.zoo.model.dao.impl.VeterinarioDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +28,7 @@ public class CallSaveAlimentacaoAction implements ICommanderAction {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewVeterinarioPageAction().execute(req, resp);
+        new CallViewFuncAnimaisPageAction().execute(req, resp);
     }
 
     @Override

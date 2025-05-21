@@ -2,6 +2,7 @@ package br.zoo.model.dao.impl;
 
 import br.zoo.model.Animal;
 import br.zoo.model.dao.GenericsDAO;
+import br.zoo.model.dto.AnimaisViewDto;
 import br.zoo.util.CriptoUtil;
 
 import javax.persistence.NoResultException;
@@ -32,7 +33,7 @@ public class AnimalDAO extends GenericsDAO<Animal, Integer> {
     public Animal alterar(Animal obj) throws Exception {
         try {
             connection.getTransaction().begin();
-            connection.persist(obj);
+            connection.merge(obj);
             connection.getTransaction().commit();
             return obj;
         } catch (Exception e) {
@@ -87,4 +88,23 @@ public class AnimalDAO extends GenericsDAO<Animal, Integer> {
         return q.getResultList();
     }
 
+    public List<AnimaisViewDto> buscarTodosView() {
+        String jpql = "select new br.zoo.model.dto.AnimaisViewDto(" +
+                "a.id, a.nome, a.nomeCientifico, a.especie," +
+                "a.dataChegada, a.estadoSaude, a.sexoAnimal, a.idade, a.emExpo) " +
+                "from Animal a";
+
+        List<AnimaisViewDto> lista = connection.createQuery(jpql, AnimaisViewDto.class).getResultList();
+
+        AlimentacaoDAO dao = new AlimentacaoDAO();
+
+        for (AnimaisViewDto dto : lista) {
+            boolean alimentado = dao.foiAlimentadoHoje(dto.getId());
+            dto.setFoiAlimentado(alimentado);
+        }
+
+        return lista;
+    }
+
 }
+

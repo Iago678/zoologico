@@ -1,43 +1,26 @@
-package br.zoo.model;
+package br.zoo.model.dto;
 
-import javax.persistence.*;
+import br.zoo.model.SaudeAnimal;
+import br.zoo.model.SexoAnimal;
+
 import java.util.Date;
 
-@Entity
-@Table
-public class Animal {
+public class AnimaisViewDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idAnimal")
-    private Integer id;
+    Integer id;
+    String nome;
+    String nomeCientifico;
+    String especie;
+    Date dataChegada;
+    SaudeAnimal estadoSaude;
+    SexoAnimal sexoAnimal;
+    int idade;
+    boolean emExpo, foiAlimentado;
 
-    @Column(length = 50, nullable = false)
-    private String nome;
+    public AnimaisViewDto() {
+    }
 
-    @Column(length = 50, nullable = false)
-    private String nomeCientifico;
-
-    @Column(length = 50, nullable = false)
-    private String especie;
-
-    @Column(length = 40)
-    private Date dataChegada;
-
-    @Column(length = 20, nullable = false)
-    private SaudeAnimal estadoSaude; // SAUDAVEL, DOENTE, TRATAMENTO
-
-    @Column(length = 20, nullable = false)
-    private SexoAnimal sexoAnimal; //MACHO, FEMEA
-
-    @Column(length = 20, nullable = false)
-    private int idade;
-
-    @Column(length = 20, nullable = false)
-    private boolean emExpo;
-
-    public Animal(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo)
-    {
+    public AnimaisViewDto(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo) {
         this.id = id;
         this.nome = nome;
         this.nomeCientifico = nomeCientifico;
@@ -49,7 +32,13 @@ public class Animal {
         this.emExpo = emExpo;
     }
 
-    public Animal() {
+
+    public boolean isFoiAlimentado() {
+        return foiAlimentado;
+    }
+
+    public void setFoiAlimentado(boolean foiAlimentado) {
+        this.foiAlimentado = foiAlimentado;
     }
 
     public Integer getId() {
@@ -100,11 +89,11 @@ public class Animal {
         this.estadoSaude = estadoSaude;
     }
 
-    public SexoAnimal getSexo() {
+    public SexoAnimal getSexoAnimal() {
         return sexoAnimal;
     }
 
-    public void setSexo(SexoAnimal sexoAnimal) {
+    public void setSexoAnimal(SexoAnimal sexoAnimal) {
         this.sexoAnimal = sexoAnimal;
     }
 

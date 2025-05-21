@@ -6,6 +6,7 @@ import br.zoo.model.dao.GenericsDAO;
 
 import javax.persistence.Query;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -87,10 +88,10 @@ public class AlimentacaoDAO extends GenericsDAO<Alimentacao, Integer> {
     }
 
     public boolean foiAlimentadoHoje(Integer idAnimal){
-        String jpql = "SELECT COUNT(a) FROM Alimentacao a WHERE a.animal.id = :idAnimal AND a.dia = :hoje";
+        String jpql = "SELECT COUNT(a) FROM Alimentacao a WHERE a.animal.id = :idAnimal AND a.data = :hoje";
         Query q = connection.createQuery(jpql);
         q.setParameter("idAnimal", idAnimal);
-        q.setParameter("hoje", LocalDate.now());
+        q.setParameter("hoje", new Date());
 
         Long count = (Long) q.getSingleResult();
         return count > 0;
