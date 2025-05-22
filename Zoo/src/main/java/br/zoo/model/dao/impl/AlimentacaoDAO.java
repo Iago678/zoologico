@@ -91,7 +91,7 @@ public class AlimentacaoDAO extends GenericsDAO<Alimentacao, Integer> {
         String jpql = "SELECT COUNT(a) FROM Alimentacao a WHERE a.animal.id = :idAnimal AND a.data = :hoje";
         Query q = connection.createQuery(jpql);
         q.setParameter("idAnimal", idAnimal);
-        q.setParameter("hoje", new Date());
+        q.setParameter("hoje", LocalDate.now());
 
         Long count = (Long) q.getSingleResult();
         return count > 0;

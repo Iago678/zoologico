@@ -50,33 +50,30 @@
 
                     <!-- logado como admin -->
                     <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'ADMIN'}">
+
                         <li>
-                            <a href="web?ac=adminAnimais"
+                            <a href="web?ac=listaAnimais"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Animais</a>
                         </li>
                         <li>
-                            <a href="web?ac=listaAnimais"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Lista Animais</a>
-                        </li>
-                        <li>
-                            <a href="web?ac=cadastroFunc"
+                            <a href="web?ac=adminFunc"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Funcionarios</a>
                         </li>
                         <li>
-                            <a href="web?ac=cadastroVet"
+                            <a href="web?ac=adminVets"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Veterinarios</a>
                         </li>
                     </c:if>
 
                     <!-- logado como funcionario ou admin-->
+                    <!-- logado como funcionario -->
+                    <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'FUNCIONARIO'}">
                     <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && (sessionScope.user.tipo == 'FUNCIONARIO' || sessionScope.user.tipo == 'ADMIN')}">
                         <li>
                             <a href="web?ac=visitaVet"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Visita Veterinario</a>
                         </li>
                     </c:if>
-                    <!-- logado como funcionario -->
-                    <c:if test="${sessionScope.estaLogado != null && sessionScope.estaLogado.equals('1') && sessionScope.user.tipo == 'FUNCIONARIO'}">
                         <li>
                             <a href="web?ac=animais"
                                 class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Animais</a>

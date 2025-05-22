@@ -2,6 +2,8 @@ package br.zoo.model.dao.impl;
 
 import br.zoo.model.Veterinario;
 import br.zoo.model.dao.GenericsDAO;
+import br.zoo.model.dto.FuncionariosViewDto;
+import br.zoo.model.dto.VeterinarioViewDto;
 import br.zoo.util.CriptoUtil;
 
 import javax.persistence.Query;
@@ -28,7 +30,7 @@ public class VeterinarioDAO extends GenericsDAO<Veterinario, Integer> {
     public Veterinario alterar(Veterinario obj) throws Exception {
         try {
             connection.getTransaction().begin();
-            connection.persist(obj);
+            connection.merge(obj);
             connection.getTransaction().commit();
             return obj;
         } catch (Exception e) {
@@ -81,6 +83,13 @@ public class VeterinarioDAO extends GenericsDAO<Veterinario, Integer> {
         String jpql = "select v from Veterinario v where v.nome like :nm ";
         Query q = connection.createQuery(jpql);
         q.setParameter("nm", "%"+nome+"%");
+        return q.getResultList();
+    }
+    public List<VeterinarioViewDto> buscarTodosView(){
+        String jpql = "select new br.zoo.model.dto.VeterinarioViewDto(" +
+                "v.id, v.nome, v.crmv, v.telefone)" +
+                "from Veterinario v";
+        Query q = connection.createQuery(jpql);
         return q.getResultList();
     }
 }

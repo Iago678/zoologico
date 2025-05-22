@@ -4,6 +4,9 @@
 <div class="container mx-auto p-4">
     <!-- Botão de Toggle entre Cadastro e Delete -->
     <div class="mt-0 mb-6">
+        <h2 id="titulo" class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center dark:text-white">
+            Cadastrar Animal
+        </h2>
         <button type="button" id="btnToggle"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Deletar Animal
@@ -12,9 +15,6 @@
 
     <!-- Seção de Cadastro de Animal (visível) -->
     <div id="cadastro">
-        <h2 class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center dark:text-white">
-            Cadastrar Animal
-        </h2>
 
         <form class="max-w-md mx-auto space-y-6 gap-4" method="POST" action="web?ac=saveAnimal">
             <!-- Nome e Saúde -->
@@ -91,10 +91,6 @@
 
     <!-- Delete de Animal  -->
     <div id="delete" class="hidden max-w-md mx-auto">
-        <h2 class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center dark:text-white">
-            Deletar Animal
-        </h2>
-
         <form method="POST" action="web?ac=delAnimal">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Animais:</label>
             <select name="cpId" class="bg-gray-50 border border-gray-300 rounded-lg p-2.5 w-full focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
@@ -119,16 +115,19 @@
         const btnToggle = document.querySelector("#btnToggle");
         const divCadastro = document.querySelector("#cadastro");
         const divDelete = document.querySelector("#delete");
+        let title = document.querySelector("#titulo");
 
         btnToggle.addEventListener("click", () => {
             if (divCadastro.classList.contains('hidden')) {
                 btnToggle.innerText = 'Deletar Animal';
                 divCadastro.classList.remove('hidden');
                 divDelete.classList.add('hidden');
+                title.innerText = 'Cadastro de Animal';
             } else {
                 btnToggle.innerText = 'Cadastrar Animal';
                 divDelete.classList.remove('hidden');
                 divCadastro.classList.add('hidden');
+                title.innerText = 'Deletar Animal';
             }
         });
     });

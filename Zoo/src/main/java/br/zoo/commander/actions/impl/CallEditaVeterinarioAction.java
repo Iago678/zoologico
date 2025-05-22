@@ -2,33 +2,32 @@ package br.zoo.commander.actions.impl;
 
 import br.zoo.commander.actions.ICommanderAction;
 import br.zoo.model.*;
-import br.zoo.model.dao.impl.AlimentacaoDAO;
 import br.zoo.model.dao.impl.AnimalDAO;
+import br.zoo.model.dao.impl.VeterinarioDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
 
-public class CallSaveAlimentacaoAction implements ICommanderAction {
+public class CallEditaVeterinarioAction implements ICommanderAction {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Alimentacao a = new Alimentacao();
-        a.setAnimal(new AnimalDAO().buscar(Integer.valueOf(req.getParameter("cpId"))));
-        Funcionario f = (Funcionario) req.getSession().getAttribute("user");
-        a.setFuncionario(f);
-        a.setData(LocalDate.now());
+        Integer id = Integer.valueOf(req.getParameter("cpId"));
+        Veterinario v = new VeterinarioDAO().buscar(id);
+        v.setNome(req.getParameter("cpNomeVet"));
+        v.setCrmv(req.getParameter("cpCrmv"));
+        v.setTelefone(req.getParameter("cpTel"));
+
 
         try {
-            new AlimentacaoDAO().inserir(a);
-            req.setAttribute("msg", " Alimentação feita com sucesso!!!");
+            new VeterinarioDAO().alterar(v);
+            req.setAttribute("msg", " O cadastro foi de"+ v.getNome() +"alterdo com sucesso!!!");
         } catch (Exception e) {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewFuncAnimaisPageAction().execute(req, resp);
+        new CallViewListaVetsPageAction().execute(req, resp);
     }
 
     @Override

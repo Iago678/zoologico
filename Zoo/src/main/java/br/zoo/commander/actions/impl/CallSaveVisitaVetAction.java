@@ -23,6 +23,7 @@ public class CallSaveVisitaVetAction implements ICommanderAction {
         visita.setVet(vet);
         visita.setData(LocalDate.parse(req.getParameter("cpData")));
         visita.setServico(ConsultaVet.valueOf(req.getParameter("cpServ")));
+        visita.setValor(Double.parseDouble(req.getParameter("cpValor")));
 
         try {
             new VisitaVetDAO().inserir(visita);
@@ -31,7 +32,12 @@ public class CallSaveVisitaVetAction implements ICommanderAction {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewVisitaVetPageAction().execute(req, resp);
+        Usuario u = (Usuario) req.getSession().getAttribute("user");
+        if(u.getTipo() == ETipoUsuario.ADMIN){
+            new CallViewVeterinarioPageAction().execute(req, resp);
+        } else if(u.getTipo() == ETipoUsuario.FUNCIONARIO){
+            new CallViewVisitaVetPageAction().execute(req, resp);
+        }
     }
 
     @Override

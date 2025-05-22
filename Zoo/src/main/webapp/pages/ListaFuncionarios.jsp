@@ -2,12 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container mx-auto p-4">
-    <h2 class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center">Lista dos Animais</h2>
+    <h2 class="text-3xl font-bold text-blue-600 mb-6 p-1 text-center">Lista de Funcionários</h2>
     <div class="mt-0 mb-6">
-        <a href="web?ac=adminAnimais">
+        <a href="web?ac=cadastroFunc">
         <button type="button" id="btnToggle"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Administrar Animais
+            Administrar Funcionários
         </button>
         </a>
     </div>
@@ -17,69 +17,46 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Nome Popular
+                    Nome
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nome Cientifico
+                    Login
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Especie
+                    Data de Ultimo acesso
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Data de Chegada
+                    Cargo
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Estado de Saude
+                    Salário
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Sexo
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Idade(anos)
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Em Exposição
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Foi Alimentado Hoje
-                </th>
+
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="a" items="${requestScope.animais}">
+            <c:forEach var="f" items="${requestScope.funcionarios}">
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    ${a.nome}
+                    ${f.nome}
                 </th>
                 <td class="px-6 py-4">
-                    ${a.nomeCientifico}
+                    ${f.login}
                 </td>
                 <td class="px-6 py-4">
-                    ${a.especie}
+                    ${f.dataUltimoAcesso}
                 </td>
                 <td class="px-6 py-4">
-                    ${a.dataChegada}
+                    ${f.cargo}
                 </td>
                 <td class="px-6 py-4">
-                    ${a.estadoSaude}
-                </td>
-                <td class="px-6 py-4">
-                    ${a.sexoAnimal}
-                </td>
-                <td class="px-6 py-4">
-                    ${a.idade}
-                </td>
-                <td class="px-6 py-4">
-                    ${a.emExpo ? "SIM" : "NÃO"}
-                </td>
-                <td class="px-6 py-4">
-                    ${a.foiAlimentado ? "SIM": "NÃO"}
+                    ${f.salario}
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <a href="web?ac=editarAnimal&id=${a.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="web?ac=editarFunc&id=${f.id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
         </tbody>

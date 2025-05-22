@@ -3,14 +3,16 @@ package br.zoo.model.dao.impl;
 import br.zoo.model.Funcionario;
 import br.zoo.model.Visitante;
 import br.zoo.model.dao.GenericsDAO;
+import br.zoo.model.dto.AnimaisViewDto;
+import br.zoo.model.dto.FuncionariosViewDto;
 import br.zoo.util.CriptoUtil;
 
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 
-import static br.zoo.model.Usuario_.nome;
 
 public class FuncionarioDAO extends GenericsDAO<Funcionario, Integer> {
     @Override
@@ -34,7 +36,7 @@ public class FuncionarioDAO extends GenericsDAO<Funcionario, Integer> {
     public Funcionario alterar(Funcionario obj) throws Exception {
         try {
             connection.getTransaction().begin();
-            connection.persist(obj);
+            connection.merge(obj);
             connection.getTransaction().commit();
             return obj;
         } catch (Exception e) {
@@ -87,6 +89,13 @@ public class FuncionarioDAO extends GenericsDAO<Funcionario, Integer> {
         String jpql = "select f from Funcionario f where f.nome like :nm ";
         Query q = connection.createQuery(jpql);
         q.setParameter("nm", "%"+nome+"%");
+        return q.getResultList();
+    }
+    public List<FuncionariosViewDto> buscarTodosView() {
+        String jpql = "select new br.zoo.model.dto.FuncionariosViewDto(" +
+                "f.id, f.nome, f.login, f.cargo, f.dataUltimoAcesso, f.salario)" +
+                "from Funcionario f";
+        Query q = connection.createQuery(jpql);
         return q.getResultList();
     }
 }

@@ -26,18 +26,18 @@ public class VisitaVet {
     private ConsultaVet servico; //CONSULTA, CIRURGIA, VACINA;
 
     @Column(nullable = true, length = 100)
-    private String diagnostico;
+    private double valor;
 
     public VisitaVet() {
     }
 
-    public VisitaVet(Integer id, Animal animal, Veterinario vet, LocalDate data, ConsultaVet servico, String diagnostico) {
+    public VisitaVet(Integer id, Animal animal, Veterinario vet, LocalDate data, ConsultaVet servico, double valor) {
         this.id = id;
         this.animal = animal;
         this.vet = vet;
         this.data = data;
         this.servico = servico;
-        this.diagnostico = diagnostico;
+        this.valor = valor;
     }
 
     public Integer getId() {
@@ -80,11 +80,11 @@ public class VisitaVet {
         this.servico = servico;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public double getValor() {
+        return valor;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 }

@@ -33,7 +33,7 @@ public class CallSaveFuncionarioAction implements br.zoo.commander.actions.IComm
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewFuncionarioPageAction().execute(req, resp);
+        new CallViewFuncionariosDtoPageAction().execute(req, resp);
     }
 
     @Override

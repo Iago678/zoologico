@@ -1,6 +1,7 @@
 package br.zoo.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,21 +18,18 @@ public class Alimentacao {
     @ManyToOne(fetch = FetchType.EAGER)
     private Funcionario funcionario;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date data;
+    @Column(name = "data", nullable = false)
+    private LocalDate data;
 
-    @Column
-    private boolean foiAlimentado;
 
     public Alimentacao() {
     }
 
-    public Alimentacao(Integer id, Animal animal, Funcionario funcionario, Date data, boolean foiAlimentado) {
+    public Alimentacao(Integer id, Animal animal, Funcionario funcionario, LocalDate data) {
         this.id = id;
         this.animal = animal;
         this.funcionario = funcionario;
         this.data = data;
-        this.foiAlimentado = foiAlimentado;
     }
 
     public Integer getId() {
@@ -58,19 +56,11 @@ public class Alimentacao {
         this.funcionario = funcionario;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public boolean isFoiAlimentado() {
-        return foiAlimentado;
-    }
-
-    public void setFoiAlimentado(boolean foiAlimentado) {
-        this.foiAlimentado = foiAlimentado;
     }
 }

@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
+import java.util.Date;
 import java.util.List;
 
 public class UsuarioDAO extends GenericsDAO<Usuario, Integer> {
@@ -71,4 +72,16 @@ public class UsuarioDAO extends GenericsDAO<Usuario, Integer> {
         }
     }
 
+    public Date buscarUltimoAcesso(Integer idUsuario) {
+        String jpql = "SELECT MAX(u.dataUltimoAcesso) FROM Usuario u";
+        Query q = connection.createQuery(jpql);
+        q.setParameter("id", idUsuario);
+
+        try{
+            return (Date) q.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        }
+
+    }
 }
