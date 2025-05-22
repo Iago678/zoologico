@@ -79,6 +79,26 @@
                 </div>
             </div>
 
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Habitat</label>
+                    <select id="habitat" name="cpHabitat" class="bg-gray-50 border border-gray-300 rounded-lg p-2.5 w-full focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <c:forEach var="habitat" items="${requestScope.habitat}">
+                            <option value="${habitat}">${habitat}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="flex-1">
+                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Recinto</label>
+                    <select id="recinto" name="cpRecinto" class="bg-gray-50 border border-gray-300 rounded-lg p-2.5 w-full focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <c:forEach var="recinto" items="${requestScope.recinto}">
+                            <option value="${recinto}">${recinto}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+
+
             <!-- Botão de Cadastro -->
             <div class="mt-6">
                 <button type="submit"

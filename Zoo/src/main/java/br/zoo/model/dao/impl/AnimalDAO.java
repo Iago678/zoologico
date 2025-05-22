@@ -91,7 +91,8 @@ public class AnimalDAO extends GenericsDAO<Animal, Integer> {
     public List<AnimaisViewDto> buscarTodosView() {
         String jpql = "select new br.zoo.model.dto.AnimaisViewDto(" +
                 "a.id, a.nome, a.nomeCientifico, a.especie," +
-                "a.dataChegada, a.estadoSaude, a.sexoAnimal, a.idade, a.emExpo) " +
+                "a.dataChegada, a.estadoSaude, a.sexoAnimal, a.idade, a.emExpo," +
+                "a.habitat, a.recinto) " +
                 "from Animal a";
 
         List<AnimaisViewDto> lista = connection.createQuery(jpql, AnimaisViewDto.class).getResultList();

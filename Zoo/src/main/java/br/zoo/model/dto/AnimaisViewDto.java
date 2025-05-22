@@ -1,5 +1,7 @@
 package br.zoo.model.dto;
 
+import br.zoo.model.Habitat;
+import br.zoo.model.Recinto;
 import br.zoo.model.SaudeAnimal;
 import br.zoo.model.SexoAnimal;
 
@@ -14,13 +16,16 @@ public class AnimaisViewDto {
     Date dataChegada;
     SaudeAnimal estadoSaude;
     SexoAnimal sexoAnimal;
+    boolean emExpo;
     int idade;
-    boolean emExpo, foiAlimentado;
+    private Habitat habitat;
+    private Recinto recinto;
+    private boolean foiAlimentado;
 
     public AnimaisViewDto() {
     }
 
-    public AnimaisViewDto(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo) {
+    public AnimaisViewDto(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo,  Habitat habitat, Recinto recinto) {
         this.id = id;
         this.nome = nome;
         this.nomeCientifico = nomeCientifico;
@@ -30,8 +35,25 @@ public class AnimaisViewDto {
         this.sexoAnimal = sexoAnimal;
         this.idade = idade;
         this.emExpo = emExpo;
+        this.habitat = habitat;
+        this.recinto = recinto;
     }
 
+    public Habitat getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
+    }
+
+    public Recinto getRecinto() {
+        return recinto;
+    }
+
+    public void setRecinto(Recinto recinto) {
+        this.recinto = recinto;
+    }
 
     public boolean isFoiAlimentado() {
         return foiAlimentado;

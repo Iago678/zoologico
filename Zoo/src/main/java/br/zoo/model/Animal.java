@@ -36,8 +36,14 @@ public class Animal {
     @Column(length = 20, nullable = false)
     private boolean emExpo;
 
-    public Animal(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo)
-    {
+    @Column(length = 20, nullable = false)
+    private Habitat habitat; // FLORESTA, SAVANA, DESERTO, MONTANHA, POLAR, AQUATICO;
+
+    @Column(length = 20, nullable = false)
+    private Recinto recinto; // VIVEIRO_AVES, TERRARIO_REPTEIS, AQUARIO, CERCADO_GRANDES_MAMIFEROS, BORBOLETARIO, PRIMATAS,
+
+
+    public Animal(Integer id, String nome, String nomeCientifico, String especie, Date dataChegada, SaudeAnimal estadoSaude, SexoAnimal sexoAnimal, int idade, boolean emExpo, Habitat habitat, Recinto recinto) {
         this.id = id;
         this.nome = nome;
         this.nomeCientifico = nomeCientifico;
@@ -47,6 +53,8 @@ public class Animal {
         this.sexoAnimal = sexoAnimal;
         this.idade = idade;
         this.emExpo = emExpo;
+        this.habitat = habitat;
+        this.recinto = recinto;
     }
 
     public Animal() {
@@ -122,5 +130,29 @@ public class Animal {
 
     public void setEmExpo(boolean emExpo) {
         this.emExpo = emExpo;
+    }
+
+    public SexoAnimal getSexoAnimal() {
+        return sexoAnimal;
+    }
+
+    public void setSexoAnimal(SexoAnimal sexoAnimal) {
+        this.sexoAnimal = sexoAnimal;
+    }
+
+    public Habitat getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
+    }
+
+    public Recinto getRecinto() {
+        return recinto;
+    }
+
+    public void setRecinto(Recinto recinto) {
+        this.recinto = recinto;
     }
 }

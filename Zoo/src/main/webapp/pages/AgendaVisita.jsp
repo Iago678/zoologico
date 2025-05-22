@@ -16,6 +16,8 @@
           <option value="11:00">11:00</option>
           <option value="13:00">13:00</option>
           <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
+          <option value="17:00">17:00</option>
         </select>
 
         <label name="quantidade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de visitantes:

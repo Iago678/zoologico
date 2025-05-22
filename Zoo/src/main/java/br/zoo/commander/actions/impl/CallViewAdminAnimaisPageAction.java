@@ -1,10 +1,7 @@
 package br.zoo.commander.actions.impl;
 
 import br.zoo.commander.actions.ICommanderAction;
-import br.zoo.model.ETipoUsuario;
-import br.zoo.model.SaudeAnimal;
-import br.zoo.model.SexoAnimal;
-import br.zoo.model.Usuario;
+import br.zoo.model.*;
 import br.zoo.model.dao.impl.AnimalDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,6 +17,8 @@ public class CallViewAdminAnimaisPageAction implements ICommanderAction {
 
         req.setAttribute("saude", SaudeAnimal.values());
         req.setAttribute("sexo", SexoAnimal.values());
+        req.setAttribute("habitat", Habitat.values());
+        req.setAttribute("recinto", Recinto.values());
         req.setAttribute("animais", new AnimalDAO().buscarTodos());
 
         rd.forward(req,resp);
@@ -29,6 +28,6 @@ public class CallViewAdminAnimaisPageAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        return u.getTipo() == ETipoUsuario.ADMIN;
+        return u.getTipo() != ETipoUsuario.VISITANTE;
     }
 }

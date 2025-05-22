@@ -1,11 +1,16 @@
 package br.zoo.model.dao.impl;
 
+import br.zoo.model.Animal;
 import br.zoo.model.VisitaVet;
 import br.zoo.model.Usuario;
 import br.zoo.model.dao.GenericsDAO;
+import br.zoo.model.dto.AnimaisViewDto;
+import br.zoo.model.dto.VeterinarioViewDto;
+import br.zoo.model.dto.VisitaVetViewDto;
 
 import javax.persistence.Query;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -85,4 +90,14 @@ public class VisitaVetDAO extends GenericsDAO<VisitaVet, Integer> {
         q.setParameter("data", data);
         return q.getResultList();
     }
+
+    public List<VisitaVetViewDto> buscarTodosView() {
+        String jpql = "SELECT new br.zoo.model.dto.VisitaVetViewDto(" +
+                "v.id, v.animal.nome, v.vet.nome, v.data, v.servico, v.valor) " +
+                "FROM VisitaVet v " +
+                "ORDER BY v.data DESC";
+        Query q = connection.createQuery(jpql, VisitaVetViewDto.class);
+        return q.getResultList();
+    }
+
 }

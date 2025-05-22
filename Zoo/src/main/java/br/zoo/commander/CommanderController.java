@@ -49,6 +49,8 @@ public class CommanderController extends HttpServlet {
         comandos.put("adminFunc",new CallViewFuncionariosDtoPageAction());
         comandos.put("adminVets",new CallViewListaVetsPageAction());
         comandos.put("editarVet",new CallViewEditaVetPageAction());
+        comandos.put("infoAnimais",new CallViewInfoAnimaisPageAction());
+        comandos.put("listaVisitaVet",new CallViewListaVisitaVetPageAction());
     }
 
 

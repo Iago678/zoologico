@@ -34,7 +34,7 @@ public class TestaBanco extends HttpServlet {
 
         Veterinario vet = new Veterinario(null, "SP12345", "329999-9999", "antonio");
 
-        Animal anm = new Animal(4, "tigre", "Tigre Dente de Sabre", "Trigrus", new Date(), SaudeAnimal.SAUDAVEL, SexoAnimal.FEMEA, 12, true);
+        Animal anm = new Animal(4, "tigre", "Tigre Dente de Sabre", "Trigrus", new Date(), SaudeAnimal.SAUDAVEL, SexoAnimal.FEMEA, 12, true, Habitat.FLORESTA, Recinto.CERCADO_GRANDES_MAMIFEROS);
 
         em.getTransaction().begin();
         em.persist(u);

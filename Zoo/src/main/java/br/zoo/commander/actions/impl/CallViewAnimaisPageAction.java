@@ -25,6 +25,6 @@ public class CallViewAnimaisPageAction implements ICommanderAction {
     public boolean isAuthorized(HttpServletRequest req) {
         Usuario u = (Usuario) req.getSession().getAttribute("user");
 
-        return u.getTipo() == ETipoUsuario.ADMIN;
+        return u.getTipo() != ETipoUsuario.VISITANTE;
     }
 }

@@ -25,6 +25,8 @@ public class CallSaveAnimalAction implements ICommanderAction {
         a.setEmExpo(Boolean.parseBoolean(req.getParameter("cpExpo")));
         a.setIdade(Integer.parseInt(req.getParameter("cpIdade")));
         a.setSexo(SexoAnimal.valueOf(req.getParameter("cpSexo")));
+        a.setHabitat(Habitat.valueOf(req.getParameter("cpHabitat")));
+        a.setRecinto(Recinto.valueOf(req.getParameter("cpRecinto")));
 
         try {
             new AnimalDAO().inserir(a);
@@ -33,7 +35,7 @@ public class CallSaveAnimalAction implements ICommanderAction {
             req.setAttribute("msg", "Erro ao salvar "+e.getMessage());
         }
 
-        new CallViewAdminAnimaisPageAction().execute(req, resp);
+        new CallViewAnimaisPageAction().execute(req, resp);
     }
 
     @Override
